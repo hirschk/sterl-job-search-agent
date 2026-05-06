@@ -79,6 +79,10 @@ Two tracks — not compromising on both simultaneously:
 
 Rule: if it's in-person → must be big brand. If it's remote → must pay US rates.
 
+**Hard filters — never surface these:**
+- Big tech / FAANG-adjacent (Google, Meta, Amazon, Apple, Microsoft, TikTok, Box, etc.) — wrong profile fit
+- Hypergrowth VC-backed Series C–F scaleups — these companies filter for candidates who've been inside that specific rocket ship. Hirsch hasn't, so inbounds from those recruiters go nowhere. Close immediately.
+
 ---
 
 ## Where to Look Things Up
@@ -144,6 +148,42 @@ When running batch outreach from a CSV or list:
 - **Undated tasks are invisible by default** — surface them separately.
 - **Section numbering** — render dynamically so numbering is always sequential.
 - **Two nudges daily** — 12:30pm and 9:45pm EST (17:30 and 02:45 UTC).
+
+## Session Log: 2026-05-06
+
+### Done
+- Box, Google, TikTok closed in Jobs tab — were re-added by scraper
+- Root cause fixed: BLOCKED_COMPANIES list added to scrape-and-score.py + job-discovery.py — FAANG and Series C-F scaleups now filtered at source, never enter sheet
+- Ramp, Phoenix Technologies, Venn → all closed in Interviews tab (dead)
+- Hannah + Lindsay outreach → Passed (wrong profile fit — Series C-F scaleup filter)
+- Brian Jorgenson (Wolters Kluwer) row fixed in Outreach (columns were shifted), status → Followed Up, T015 marked done
+- Victor Skrylev → Followed Up
+- Derek (Demand Inc), Doug (EBM AI) → Followed Up (May 12)
+- Andrew Tulloch → Followed Up (May 12)
+- Razib Ahmed (Float + Relay) → Followed Up (May 12)
+- Matthew Parson (Brex) → Passed (dropped)
+- Calendar fixed permanently: service account added to Google Calendar, no more OAuth expiry
+- Full week interviews pulled from Google Calendar and logged to Interviews tab:
+  - Harsh Paleja → Modo Labs, May 6 1pm
+  - Dustin Ly → Peregrine Accounting AI, May 6 2pm
+  - Aaron Le → health tech LA (inbound), May 6 3:30pm
+  - Mario → Hopper, May 6 4:30pm
+  - Derek → Demand Inc (former boss, warm reconnect, email marketing agency), May 7 11am
+  - Jay Singh → Casper Studios, May 7 1pm
+- All changes pushed to GitHub
+
+### Pending
+- Thank-yous for all 6 interviews this week (within 2h of each call)
+- T010: VC Talent Partner DMs x5 Austin/LA — overdue since Apr 15
+- T004: Video — how I built my OpenClaw agent
+- George (MeetAlfred) WhatsApp — overdue since Apr 29
+- Follow-ups May 12: Derek, Doug, Andrew Tulloch, Razib (Float + Relay)
+- Brian Jorgenson follow-up May 8
+- Austin recruiters follow-up May 7
+- Neeraj (Deloitte Ventures) — no opportunity, still needs a decision (close or follow up?)
+- Beacon Software — still waiting to confirm meeting
+
+---
 
 ## Session Log: 2026-05-01
 
