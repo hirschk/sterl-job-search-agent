@@ -16,6 +16,21 @@ ACTOR = "openclaw~linkedin-jobs-scraper"
 WORKSPACE = "/root/.openclaw/workspace"
 SHEET_ID = "1hbT8236Mh9_H4Ri6lTlwuCNvT1jdXTIBR91A3roNFXs"
 
+# Companies that filter for Series C-F hypergrowth experience Hirsch doesn't have.
+# Also includes FAANG/big tech — wrong profile fit. Never surface these.
+BLOCKED_COMPANIES = {
+    # FAANG + big tech
+    'google', 'meta', 'amazon', 'apple', 'microsoft', 'tiktok', 'bytedance',
+    'netflix', 'uber', 'airbnb', 'box', 'salesforce', 'oracle', 'ibm',
+    'linkedin', 'twitter', 'x', 'snap', 'pinterest', 'reddit', 'spotify',
+    'dropbox', 'slack', 'atlassian', 'workday', 'servicenow', 'adobe',
+    # Hypergrowth VC-backed Series C-F scaleups (wrong profile fit)
+    'robinhood', 'chime', 'plaid', 'stripe', 'instacart', 'doordash',
+    'coinbase', 'brex', 'rippling', 'gusto', 'lattice', 'notion',
+    'figma', 'canva', 'databricks', 'snowflake', 'scale ai', 'openai',
+    'anthropic', 'cohere', 'klarna', 'affirm', 'afterpay', 'nubank',
+}
+
 TARGET_ROLES = {
     "head of product": 1.0,
     "director of product": 0.95,
@@ -184,6 +199,7 @@ def main():
         return 1
     
     print("Scoring...")
+    jobs = [j for j in jobs if j.get('companyName', '').lower().strip() not in BLOCKED_COMPANIES]
     scored = [score_job(j, network) for j in jobs]
     scored.sort(key=lambda x: x['priority_score'], reverse=True)
     

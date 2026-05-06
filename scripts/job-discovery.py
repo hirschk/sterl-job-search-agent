@@ -21,6 +21,21 @@ APIFY_API_TOKEN = os.environ.get("APIFY_API_TOKEN")
 APIFY_ACTOR = "openclaw/linkedin-jobs-scraper"
 WORKSPACE = "/root/.openclaw/workspace"
 
+# Companies that filter for Series C-F hypergrowth experience Hirsch doesn't have.
+# Also includes FAANG/big tech — wrong profile fit. Never surface these.
+BLOCKED_COMPANIES = {
+    # FAANG + big tech
+    'google', 'meta', 'amazon', 'apple', 'microsoft', 'tiktok', 'bytedance',
+    'netflix', 'uber', 'airbnb', 'box', 'salesforce', 'oracle', 'ibm',
+    'linkedin', 'twitter', 'x', 'snap', 'pinterest', 'reddit', 'spotify',
+    'dropbox', 'slack', 'atlassian', 'workday', 'servicenow', 'adobe',
+    # Hypergrowth VC-backed Series C-F scaleups (wrong profile fit)
+    'robinhood', 'chime', 'plaid', 'stripe', 'instacart', 'doordash',
+    'coinbase', 'brex', 'rippling', 'gusto', 'lattice', 'notion',
+    'figma', 'canva', 'databricks', 'snowflake', 'scale ai', 'openai',
+    'anthropic', 'cohere', 'klarna', 'affirm', 'afterpay', 'nubank',
+}
+
 # Target parameters
 TARGET_ROLES = {
     "head of product": 1.0,
@@ -260,7 +275,11 @@ def main():
         print("  No jobs scraped. Check API token and actor ID.")
         return 1
     
-    # Step 3: Score jobs
+    # Step 3: Filter blocked companies, then score
+    print("Filtering blocked companies...")
+    jobs = [j for j in jobs if j.get('companyName', '').lower().strip() not in BLOCKED_COMPANIES]
+    print(f"  {len(jobs)} jobs after filtering")
+
     print("Scoring jobs...")
     scored_jobs = score_jobs(jobs, network_companies)
     print(f"  Scored {len(scored_jobs)} jobs")
