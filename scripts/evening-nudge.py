@@ -28,6 +28,12 @@ SKIP_JOB_STATUS = {"removed", "paused", "applied", "screening", "interviewing",
                    "rejected", "passed", "hired", "declined"}
 # "outreaching" intentionally excluded — stays active until referral confirmed
 
+BLOCKED_COMPANIES = {
+    "google", "meta", "amazon", "apple", "microsoft", "tiktok", "box",
+    "facebook", "netflix", "uber", "airbnb", "snap", "twitter", "x",
+    "adobe", "salesforce", "human", "bytedance", "linkedin",
+}
+
 
 def sheets_client():
     creds = service_account.Credentials.from_service_account_file(
@@ -108,6 +114,8 @@ def main():
         job_status   = row[8].strip().lower()
 
         if job_status in SKIP_JOB_STATUS or not network_path:
+            continue
+        if company.lower() in BLOCKED_COMPANIES:
             continue
 
         contact = network_path.split("(")[0].strip()
