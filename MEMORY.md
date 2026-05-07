@@ -149,6 +149,30 @@ When running batch outreach from a CSV or list:
 - **Section numbering** — render dynamically so numbering is always sequential.
 - **Two nudges daily** — 12:30pm and 9:45pm EST (17:30 and 02:45 UTC).
 
+## Session Log: 2026-05-07
+
+### Done
+- Evening nudge: added BLOCKED_COMPANIES filter to Jobs loop — FAANG/blocked companies can no longer appear in nudge
+- Interviews tab cleaned: deleted Ramp, Phoenix Technologies, Katalyze AI, Venn (all closed/passed), Aaron Lee dupe, Casper dupe
+- Jobs tab: deleted HUMAN, Adobe, Box, Google, TikTok rows entirely
+- Outreach tab: Wealthsimple (Rachel/Vino) marked Passed
+- followup-sequence.py (morning brief): added "closed" + full terminal statuses to SKIP_JOB_STATUSES, added BLOCKED_COMPANIES filter to both Jobs loops
+- All changes pushed to GitHub
+
+### Pending
+- Thank-yous for yesterday's interviews: Modo Labs (Harsh), Peregrine (Dustin), Aaron Le (health tech LA), Hopper (Mario)
+- Thank-yous for today: Demand Inc (Derek, 11am), Casper Studios (Jay, 1pm)
+- T010: VC Talent Partner DMs x5 Austin/LA — overdue since Apr 15
+- T004: Video — how I built my OpenClaw agent
+- George (MeetAlfred) WhatsApp — overdue since Apr 29
+- Follow-ups May 12: Derek, Doug, Andrew Tulloch, Razib (Float + Relay)
+- Brian Jorgenson follow-up May 8
+- Austin recruiters follow-up May 7
+- Neeraj (Deloitte Ventures) — still needs a decision (close or follow up?)
+- Beacon Software — still waiting to confirm meeting
+
+---
+
 ## Session Log: 2026-05-06
 
 ### Done
