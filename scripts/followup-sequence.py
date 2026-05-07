@@ -32,11 +32,16 @@ MAX_NEW_CONTACTS = 5
 STAGE_ORDER = ["D3", "D7", "D14"]
 STAGE_DAYS  = {"D3": 3, "D7": 7, "D14": 14}
 TERMINAL_STATUS       = {"replied", "meeting booked", "stale", "passed", "closed", "referred"}
-SKIP_JOB_STATUSES     = {"removed", "paused"}
+SKIP_JOB_STATUSES     = {"removed", "paused", "closed", "rejected", "passed", "hired", "declined"}
 ACTIONED_JOB_STATUSES = {
     "applied", "screening", "interviewing", "paused",
     "rejected", "passed", "hired", "declined",
     # "outreaching" is intentionally NOT here — stays visible until confirmed referral
+}
+BLOCKED_COMPANIES = {
+    "google", "meta", "amazon", "apple", "microsoft", "tiktok", "box",
+    "facebook", "netflix", "uber", "airbnb", "snap", "twitter", "x",
+    "adobe", "salesforce", "human", "bytedance", "linkedin",
 }
 
 
@@ -169,6 +174,8 @@ def section_first_contacts(svc, outreach_names):
 
         if status in SKIP_JOB_STATUSES:
             continue
+        if company.lower() in BLOCKED_COMPANIES:
+            continue
         if not network_path:
             continue
 
@@ -206,6 +213,8 @@ def section_new_contacts(svc, outreach_names):
         if status in SKIP_JOB_STATUSES:
             continue
         if status in ACTIONED_JOB_STATUSES:
+            continue
+        if company.lower() in BLOCKED_COMPANIES:
             continue
         if not network_path:
             continue
