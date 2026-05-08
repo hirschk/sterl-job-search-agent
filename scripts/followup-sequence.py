@@ -298,11 +298,10 @@ def main():
 
     # Collect sections
     followups    = section_followups(svc, today, today_str)
-    new_contacts = section_new_contacts(svc, outreach_names)
     tasks, undated_tasks = section_tasks(svc, today)
 
     # Bail if truly nothing
-    if not followups and not new_contacts and not tasks and not undated_tasks:
+    if not followups and not tasks and not undated_tasks:
         print("[INFO] Nothing to report today.")
         return
 
@@ -316,23 +315,16 @@ def main():
             lines.append("  • " + item["label"] + suffix)
         lines.append("")
 
-    # Section 2 — New contacts (top 5, carry-forward included)
-    if new_contacts:
-        lines.append("<b>2. New contacts for today (" + str(len(new_contacts)) + ")</b>")
-        for item in new_contacts:
-            lines.append("  • " + item["contact"] + " @ " + item["company"] + " — " + item["role"])
-        lines.append("")
-
-    # Section 3 — Tasks due/overdue
+    # Section 2 — Tasks due/overdue
     if tasks:
-        lines.append("<b>3. Tasks due / overdue (" + str(len(tasks)) + ")</b>")
+        lines.append("<b>2. Tasks due / overdue (" + str(len(tasks)) + ")</b>")
         for item in tasks:
             lines.append("  • " + item["label"] + " (due " + item["due"] + ")")
         lines.append("")
 
-    # Section 4 — Undated tasks
+    # Section 3 — Undated tasks
     if undated_tasks:
-        lines.append("<b>4. No due date set (" + str(len(undated_tasks)) + ")</b>")
+        lines.append("<b>3. No due date set (" + str(len(undated_tasks)) + ")</b>")
         for item in undated_tasks:
             lines.append("  • " + item["label"])
 
